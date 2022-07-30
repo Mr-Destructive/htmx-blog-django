@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div hx-target="this" hx-swap="outerHTML">
+  <form>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button hx-post="."
+      type="submit">Save</button>
+  </form>
+</div>
+{% endblock %}

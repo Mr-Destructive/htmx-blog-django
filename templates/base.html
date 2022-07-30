@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTMX Blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://unpkg.com/htmx.org@1.1.0"></script>
+</head>
+<body  hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+        <nav>
+        <h2>HTMX Blog</h2>
+        <div class="navbar">
+          {% if user.is_authenticated %}
+              <a class="nav-item nav-link" href="{% url 'logout' %}"><button class="btn btn-link">Logout</button></a>
+          {% else %}
+              <a class="nav-item nav-link" href="{% url 'login' %}"><button class="btn btn-link">Login</button></a>
+              <a class="nav-item nav-link" href="{% url 'register' %}"><button class="btn btn-link">Register</button></a>
+          {% endif %}
+        </div>
+        </nav>
+
+    {% block body %}
+    {% include 'articles/list.html' %}
+    {% endblock %}
+</body>
+</html>
