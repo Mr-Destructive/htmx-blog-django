@@ -1,2 +1,6 @@
-<h2>{{ article.title }}
-<p>{{ article.content|linebreaks|safe }}</p>
+{% extends 'base.html' %}
+{% block body %}
+  <h2>{{ article.title }}
+  {% include 'articles/delete.html' %}
+  <p>{{ article.content|linebreaks|safe }}</p>
+{% endblock %}
