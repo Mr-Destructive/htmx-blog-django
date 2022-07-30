@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block body %}
+<div hx-target="this" hx-swap="outerHTML">
   <h2>{{ article.title }}
   {% include 'articles/delete.html' %}
+  <button hx-get="{% url 'article-update' article.id %}" hx-trigger="click once">Update</button>
   <p>{{ article.content|linebreaks|safe }}</p>
+<div>
 {% endblock %}

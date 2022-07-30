@@ -1,4 +1,6 @@
+import json
 from django.shortcuts import render
+from django.http import QueryDict
 from .models import Article
 from .forms import ArticleForm
 
@@ -8,9 +10,7 @@ def createArticle(request):
         if form.is_valid():
             form.instance.author = request.user
             article = form.save()
-            print(article)
             return render(request, 'articles/detail.html', {'article': article})
-            #return render()
     context = {
         'form': form,
     }
@@ -34,3 +34,20 @@ def deleteArticle(request, pk):
     print(articles)
     context = {'article': articles}
     return render(request, "articles/list.html", context)
+
+def updateArticle(request, pk):
+    article = Article.objects.get(id=pk)
+    print(request.method)
+    if request.method == 'PUT':
+        qd = QueryDict(request.body)
+        form = ArticleForm(instance=article, data=qd)
+        if form.is_valid():
+            form.instance.author = request.user
+            article = form.save()
+            return render(request, 'articles/detail.html', {'article': article})
+    form = ArticleForm(instance=article)
+    context = {
+        'form': form,
+        'article': article,
+    }
+    return render(request, 'articles/update.html', context)

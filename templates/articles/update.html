@@ -1,0 +1,8 @@
+<div hx-target="this" hx-swap="outerHTML">
+  <form>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button hx-put="{% url 'article-update' article.id %}"
+      type="submit">Update</button>
+  </form>
+</div>

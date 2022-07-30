@@ -1,7 +1,7 @@
 <ul>
   {% for article in articles %}
   <li>
-    {{ article.title }}
+    <a href="{% url 'article-detail' article.id %}">{{ article.title }}</a>
   </li>
   {% endfor %}
 </ul>
