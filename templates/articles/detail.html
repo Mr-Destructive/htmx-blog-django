@@ -3,7 +3,8 @@
 <div hx-target="this" hx-swap="outerHTML">
   <h2>{{ article.title }}
   {% include 'articles/delete.html' %}
-  <button hx-get="{% url 'article-update' article.id %}" hx-trigger="click once">Update</button>
+  <button class="btn btn-primary"
+    hx-get="{% url 'article-update' article.id %}" hx-trigger="click once">Update</button>
   <p>{{ article.content|linebreaks|safe }}</p>
 <div>
 {% endblock %}

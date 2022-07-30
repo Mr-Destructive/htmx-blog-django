@@ -3,10 +3,10 @@
     event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
   })
 </script>
-<div hx-target="this" hx-swap="outerHTML" class="container pt-5">
+<div >
   <form method="post" >
   {% csrf_token %}
-    <button
+    <button class="btn btn-danger"
       hx-delete="{% url 'article-delete' article.id %}"
       hx-confirm="Are you sure, You want to delete this article?"
       type="submit"

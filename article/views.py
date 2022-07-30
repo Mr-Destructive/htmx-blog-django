@@ -1,4 +1,3 @@
-import json
 from django.shortcuts import render
 from django.http import QueryDict
 from .models import Article
@@ -21,7 +20,7 @@ def listArticle(request):
     context = {
         'articles': articles,
     }
-    return render(request, 'articles/list.html', context)
+    return render(request, 'base.html', context)
 
 def detailArticle(request, pk):
     article = Article.objects.get(id=pk)
@@ -33,11 +32,10 @@ def deleteArticle(request, pk):
     articles = Article.objects.filter(author=request.user)
     print(articles)
     context = {'article': articles}
-    return render(request, "articles/list.html", context)
+    return render(request, "base.html", context)
 
 def updateArticle(request, pk):
     article = Article.objects.get(id=pk)
-    print(request.method)
     if request.method == 'PUT':
         qd = QueryDict(request.body)
         form = ArticleForm(instance=article, data=qd)

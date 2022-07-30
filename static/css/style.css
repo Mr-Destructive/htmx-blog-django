@@ -1,0 +1,10 @@
+#article-list{
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+}
+.navbar{
+  justify-content: flex-start;
+}
